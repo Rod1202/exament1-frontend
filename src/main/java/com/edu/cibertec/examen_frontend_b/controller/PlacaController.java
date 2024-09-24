@@ -29,7 +29,7 @@ public class PlacaController {
     }
 
     
-    @SuppressWarnings({ "null" })
+    
     @PostMapping("/autenticar")
     public String autenticar(@RequestParam("placa") String placa,Model model) {
         String regex = "[A-Za-z]{3}-[0-9]{3}";
@@ -44,10 +44,15 @@ public class PlacaController {
             PlacaResponseDTO placaResponseDTO = restTemplate.postForObject(endpoint, placaRequestDTO, PlacaResponseDTO.class);
             
            
-            if(placaResponseDTO.placa().equals("00")) {
-                PlacaModel placaModel = new PlacaModel("00" ,"",placaResponseDTO.placa());
-                model.addAttribute("placaModel", placaModel);
-                return "principal";
+            if (placaResponseDTO != null && !placaResponseDTO.placa().equals("Placa no encontrada")) {
+                // Si se encontró la placa, enviamos los datos a la vista "principal"
+                model.addAttribute("placaModel", new PlacaModel("00", "", placaResponseDTO.placa()));
+                model.addAttribute("marca", placaResponseDTO.marca());
+                model.addAttribute("modelo", placaResponseDTO.modelo());
+                model.addAttribute("asientos", placaResponseDTO.nroAsientos());
+                model.addAttribute("color", placaResponseDTO.color());
+                model.addAttribute("precio", placaResponseDTO.precio());
+                return "principal";  // Redirigimos a la vista principal
     
             }else{
                 System.out.println("Placa recibida: " + placa);

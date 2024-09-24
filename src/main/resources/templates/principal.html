@@ -52,11 +52,11 @@
     <div class="card">
         <h2>Rueditas</h2>
         <div th:if="${placaModel.codigo == '00'}" class="info">
-            <p>✅Marca: <span th:text="${placaModel.marca}"></span></p>
-            <p>✅Modelo: <span th:text="${placaModel.modelo}"></span></p>
-            <p>✅Número de Asientos: <span th:text="${placaModel.nroAsientos}"></span></p>
-            <p>✅Precio: <span th:text="${placaModel.precio}"></span></p>
-            <p>✅Color: <span th:text="${placaModel.color}"></span></p>
+            <p>✅Marca: <span th:text="${marca}"></span></p>
+            <p>✅Modelo: <span th:text="${modelo}"></span></p>
+            <p>✅Número de Asientos: <span th:text="${asientos}"></span></p>
+            <p>✅Precio: <span th:text="${precio}"></span></p>
+            <p>✅Color: <span th:text="${color}"></span></p>
         </div>
         <div th:if="${placaModel.codigo == '01'}" class="info">
             <p th:text="${placaModel.mensaje}"></p>
